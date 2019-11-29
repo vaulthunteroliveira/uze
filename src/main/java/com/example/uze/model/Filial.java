@@ -1,0 +1,80 @@
+package com.example.uze.model;
+
+import java.io.Serializable;
+import java.util.List;
+
+
+//@Entity
+public class Filial implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
+	private Integer id;
+	
+	private String nome;
+	
+	private List<Vendedor> vendedores;
+
+	public Filial() {
+	}
+
+	public Filial(Integer id, String nome, List<Vendedor> vendedores) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.vendedores = vendedores;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public List<Vendedor> getVendedores() {
+		return vendedores;
+	}
+
+	public void setVendedores(List<Vendedor> vendedores) {
+		this.vendedores = vendedores;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Filial other = (Filial) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	} 
+
+	
+	
+
+}
