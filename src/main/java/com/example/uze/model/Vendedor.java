@@ -2,10 +2,13 @@ package com.example.uze.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Vendedor implements Serializable {
@@ -18,6 +21,8 @@ public class Vendedor implements Serializable {
 
 	private String nome;
 
+	@ManyToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "filial_id")
 	private Filial filial;
 
 	public Vendedor() {
