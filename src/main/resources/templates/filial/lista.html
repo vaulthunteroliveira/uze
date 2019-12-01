@@ -5,7 +5,11 @@
 <body>
 
         <section class="layout-content" layout:fragment="corpo">
-
+        
+        	<div style="margin: 10px;">
+				<div th:replace="fragments/alert"/>
+        	</div>
+        	
             <nav class="navbar navbar-expand-md bg-light">
                 <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                     <ul class="navbar-nav mr-auto">
@@ -37,7 +41,8 @@
                                     <a class="btn btn-info btn-sm" th:href="@{/filiais/editor/{id} (id=${f.id})}" role="button"> 
                                     	<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
                                     </a>
-                                    <button type="button" class="btn btn-danger btn-sm">
+                                    <button id="btn-excluir" type="button" class="btn btn-danger btn-sm"
+                                    	data-toggle="modal" data-target="meuModal" onclick="teste()">
                                         <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
                                     </button>
                                 </td>
@@ -47,10 +52,32 @@
                     </table>
                 </div>
             </div>
+            
+            <div th:replace="fragments/modal :: modal"></div>
 
 	        <script type="text/javascript">
+	        
+	        	function teste(){
+	        		alert('clicou')
+	        	}
+	        
 		        let listarFilial = document.getElementById('listar-filial')
 		        listarFilial.style.display = 'none'
+		        
+		        let btnExcluir = document.getElementById('btn-excluir');
+		        
+		        let url = '';
+		        
+		        btnConfirm.onclick = () => {
+		        	console.log('clicou')
+		        }
+
+		        let btnConfirm = document.getElementById('ok_confirm');
+		        
+		        btnConfirm.onclick = () => {
+		        	document.location.href = url;
+		        }	        
+
 	        </script>
         </section>
         

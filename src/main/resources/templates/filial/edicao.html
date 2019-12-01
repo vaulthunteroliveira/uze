@@ -17,7 +17,7 @@
             </nav>
 
             <div class="container" id="cadastro">
-            	<form th:action="@{/filiais/salvar}" th:object="${filial}" method="POST">
+            	<form th:action="@{/filiais/editar}" th:object="${filial}" method="POST">
                     <div th:replace="fragments/alert"/>
                     <div class="form-row">
                         <div class="form-group col-md-6">

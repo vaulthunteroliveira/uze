@@ -1,10 +1,12 @@
 package com.example.uze.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.uze.exception.ObjectNotFoundException;
 import com.example.uze.model.Filial;
 import com.example.uze.repositories.FilialRepository;
 
@@ -31,8 +33,9 @@ public class FilialService {
 		repo.save(filial);
 	}
 
-	public Object buscarPorId(Integer id) {
-		return repo.findById(id);
+	public Filial buscarPorId(Integer id) {
+		Optional<Filial> obj = repo.findById(id);
+		return obj.orElseThrow(()-> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Filial.class.getName()));
 	}
 	
 }

@@ -42,14 +42,22 @@ public class FilialController {
 	@GetMapping("/editor/{id}")
 	private String abrirTelaEditar(@PathVariable("id") Integer id, ModelMap modelMap) {
 		modelMap.addAttribute("filial", service.buscarPorId(id));
-		return "/filial/cadastro";
+		return "/filial/edicao";
 	}
 
 	@PostMapping("/editar")
 	private String editar(Filial filial, RedirectAttributes attr) {
 		service.salvar(filial);
 		attr.addFlashAttribute("success", "Registro atualizado com sucesso!");
-		return "redirect:/filiais/cadastrar";
+		return "redirect:/filiais/listar";
+	}
+	
+	@GetMapping("/excluir/{id}")
+	private String excluir(@PathVariable("id") Integer id, RedirectAttributes attr) {
+		Filial filial = service.buscarPorId(id);
+		service.excluir(filial);
+		attr.addFlashAttribute("success", "Registro excluido com sucesso.");
+		return "redirect:/filiais/listar";
 	}
 
 }
