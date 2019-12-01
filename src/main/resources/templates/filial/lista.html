@@ -1,86 +1,67 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
-<head><meta charset="UTF-8" />
+<head>
+<meta charset="UTF-8" />
 </head>
 <body>
 
-        <section class="layout-content" layout:fragment="corpo">
-        
-        	<div style="margin: 10px;">
-				<div th:replace="fragments/alert"/>
-        	</div>
-        	
-            <nav class="navbar navbar-expand-md bg-light">
-                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active"><i class="oi oi-caret-right"></i>
-                            <span>Lista de Filiais</span>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+	<section class="layout-content" layout:fragment="corpo">
 
-            <div class="container" id="listagem">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover table-sm">
-                        <thead>
-                            <tr>
-                                <th>código</th>
-                                <th>Nome da Filial</th>
-                                <th>Ação</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="f : ${filiais}">
-                                <td th:text="${f.id}"></td>
-                                <td th:text="${f.nome}"></td>
-                                <td colspan="3">
-                                	<a class="btn btn-primary btn-sm" href="/cargos/editar/1" role="button"> 
-                                		<span class="oi oi-arrow-circle-right" title="Ir" aria-hidden="true"></span>
-                                    </a> 
-                                    <a class="btn btn-info btn-sm" th:href="@{/filiais/editor/{id} (id=${f.id})}" role="button"> 
-                                    	<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-                                    </a>
-                                    <button id="btn-excluir" type="button" class="btn btn-danger btn-sm"
-                                    	data-toggle="modal" data-target="meuModal" onclick="teste()">
-                                        <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-                                    </button>
-                                </td>
-                            </tr>
+		<div style="margin: 10px;">
+			<div th:replace="fragments/alert" />
+		</div>
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <div th:replace="fragments/modal :: modal"></div>
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span>Lista de Filiais</span></li>
+				</ul>
+			</div>
+		</nav>
 
-	        <script type="text/javascript">
-	        
-	        	function teste(){
-	        		alert('clicou')
-	        	}
-	        
-		        let listarFilial = document.getElementById('listar-filial')
-		        listarFilial.style.display = 'none'
-		        
-		        let btnExcluir = document.getElementById('btn-excluir');
-		        
-		        let url = '';
-		        
-		        btnConfirm.onclick = () => {
-		        	console.log('clicou')
-		        }
+		<div class="container" id="listagem">
+			<div class="table-responsive">
+				<table class="table table-striped table-hover table-sm">
+					<thead>
+						<tr>
+							<th>código</th>
+							<th>Nome da Filial</th>
+							<th>Ação</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="f : ${filiais}">
+							<td th:text="${f.id}"></td>
+							<td th:text="${f.nome}"></td>
+							<td colspan="3"><a class="btn btn-primary btn-sm"
+								href="/cargos/editar/1" role="button"> <span
+									class="oi oi-arrow-circle-right" title="Ir" aria-hidden="true"></span>
+							</a> <a class="btn btn-info btn-sm"
+								th:href="@{/filiais/editor/{id} (id=${f.id})}" role="button">
+									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+							</a>
+								<button th:id="${ 'btn_filiais/excluir/' + f.id}"
+									type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+									data-target="#myModal">
+									<span class="oi oi-circle-x" title="Exclusão desabilitada"
+										aria-hidden="true"></span>
+								</button></td>
+						</tr>
 
-		        let btnConfirm = document.getElementById('ok_confirm');
-		        
-		        btnConfirm.onclick = () => {
-		        	document.location.href = url;
-		        }	        
+					</tbody>
+				</table>
+			</div>
+		</div>
 
-	        </script>
-        </section>
-        
+		<div th:replace="fragments/modal :: modal"></div>
+
+		<script type="text/javascript">
+			let listarFilial = document.getElementById('listar-filial')
+			listarFilial.style.display = 'none'
+		</script>
+	</section>
+
 
 </body>
 
