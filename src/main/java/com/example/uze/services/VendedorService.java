@@ -1,31 +1,35 @@
 package com.example.uze.services;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.uze.exception.ObjectNotFoundException;
 import com.example.uze.model.Vendedor;
+import com.example.uze.repositories.ClienteRepository;
 import com.example.uze.repositories.VendedorRepository;
 
 @Service
 public class VendedorService {
-
+	
 	@Autowired
 	private VendedorRepository repo;
-
-	public Vendedor buscarPorId(Integer id) {
-		/*
-		 * if (repo.findById(id) == null) { throw new ObjectNotFoundException(
-		 * "Objeto não encontrado! id: " + id + ", tipo:" + Vendedor.class.getName()); }
-		 */
-		return repo.findById(id).orElse(null);
+	
+	private void salvar(Vendedor vendedor) {
+		repo.save(vendedor);
+	}
+	
+	private void excluir(Vendedor vendedor) {
+		repo.delete(vendedor);
+	}
+	
+	private List<Vendedor> listar() {
+		return repo.findAll();
 
 	}
-
-	public void salvar(Vendedor v1) {
-		repo.save(v1);
-
+	
+	private void atualizar(Vendedor vendedor) {
+		repo.save(vendedor);
 	}
+	
 }
