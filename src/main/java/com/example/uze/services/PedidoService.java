@@ -2,6 +2,7 @@ package com.example.uze.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.uze.model.Pedido;
@@ -10,7 +11,8 @@ import com.example.uze.repositories.PedidoRepository;
 
 @Service
 public class PedidoService {
-
+	
+	@Autowired
 	private PedidoRepository repo;
 	
 	private void salvar(Pedido pedido) {

@@ -30,5 +30,9 @@ public class FilialService {
 	public void atualizar(Filial filial) {
 		repo.save(filial);
 	}
+
+	public Object buscarPorId(Integer id) {
+		return repo.findById(id);
+	}
 	
 }
