@@ -18,6 +18,9 @@ public class Cliente implements Serializable{
 	private Integer id;
 	
 	private String nome;
+	
+	
+	private String cnpj;
 
 	public Cliente() {
 	}
@@ -36,6 +39,14 @@ public class Cliente implements Serializable{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
 
 	@Override

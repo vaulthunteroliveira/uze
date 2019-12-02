@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head><meta charset="UTF-8" /></head>
+<body>
+
+        <section class="layout-content" layout:fragment="corpo">
+
+            <nav class="navbar navbar-expand-md bg-light">
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <i class="oi oi-caret-right"></i>
+                            <span>Cadastrar filial</span>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+	        
+	        <script th:inline="javascript">
+			/*<![CDATA[*/
+			
+				let brandText = document.getElementById('brand-text');
+		        brandText.innerHTML  = [[${filial.nome}]];
+			
+			/*]]>*/
+			</script>
+        </section>
+
+</body>
+
+</html>

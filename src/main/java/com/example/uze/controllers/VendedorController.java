@@ -1,68 +1,77 @@
 package com.example.uze.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.uze.model.Filial;
+import com.example.uze.model.Vendedor;
 import com.example.uze.services.FilialService;
+import com.example.uze.services.VendedorService;
 
 @Controller
-@RequestMapping(value = "/filiais")
-public class FilialController {
+@RequestMapping(value = "/vendedores")
+public class VendedorController {
 
+	@Autowired
+	private VendedorService vendedorService;
+	
 	@Autowired
 	private FilialService filialService;
 
 	@GetMapping("/cadastrar")
-	private String cadastrar(Filial filial) {
-		return "/filial/cadastro";
+	private String cadastrar(Vendedor vendedor) {
+		return "/vendedor/cadastro";
 	}
 
 	@GetMapping("listar")
 	private String listar(ModelMap modelMap) {
-		modelMap.addAttribute("filiais", filialService.listar());
-		return "/filial/lista";
+		modelMap.addAttribute("vendedores", vendedorService.listar());
+		return "/vendedor/lista";
 	}
 
 	@PostMapping("/salvar")
-	private String salvar(Filial filial, RedirectAttributes attr, BindingResult result) {
-		filialService.salvar(filial);
-		attr.addFlashAttribute("success", "filial cadastrada com sucesso!");
-		return "redirect:/filiais/cadastrar";
+	private String salvar(Vendedor vendedor, RedirectAttributes attr, BindingResult result) {
+		vendedorService.salvar(vendedor);
+		attr.addFlashAttribute("success", "Registro cadastrado com sucesso!");
+		return "redirect:/vendedor/cadastrar";
 	}
 	
 	@GetMapping("/editor/{id}")
 	private String abrirTelaEditar(@PathVariable("id") Integer id, ModelMap modelMap) {
-		modelMap.addAttribute("filial", filialService.buscarPorId(id));
-		return "/filial/edicao";
+		modelMap.addAttribute("vendedor", vendedorService.buscarPorId(id));
+		return "/vendedor/edicao";
 	}
 
 	@PostMapping("/editar")
-	private String editar(Filial filial, RedirectAttributes attr) {
-		filialService.salvar(filial);
+	private String editar(Vendedor filial, RedirectAttributes attr) {
+		vendedorService.salvar(filial);
 		attr.addFlashAttribute("success", "Registro atualizado com sucesso!");
-		return "redirect:/filiais/listar";
+		return "redirect:/vendedores/listar";
 	}
 	
 	@GetMapping("/excluir/{id}")
 	private String excluir(@PathVariable("id") Integer id, RedirectAttributes attr) {
-		Filial filial = filialService.buscarPorId(id);
-		filialService.excluir(filial);
+		Vendedor vendedor = vendedorService.buscarPorId(id);
+		vendedorService.excluir(vendedor);
 		attr.addFlashAttribute("success", "Registro excluido com sucesso.");
-		return "redirect:/filiais/listar";
+		return "redirect:/vemdedores/listar";
 	}
 	
-	@GetMapping("/dashboad/{id}")
-	private String abrirDashboard(@PathVariable("id") Integer id, ModelMap modelMap) {
-		modelMap.addAttribute("filial", filialService.buscarPorId(id));
-		return "/filial/dashboard";
+	@ModelAttribute("filiais")
+	private List<Filial> listaDeFiliais() {
+		return filialService.listar();
 	}
+	
+
 
 }

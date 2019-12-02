@@ -15,7 +15,8 @@
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><i class="oi oi-caret-right"></i>
-						<span>Lista de Filiais</span></li>
+						<span>Lista de Filiais</span>
+					</li>
 				</ul>
 			</div>
 		</nav>
@@ -25,7 +26,7 @@
 				<table class="table table-striped table-hover table-sm">
 					<thead>
 						<tr>
-							<th>código</th>
+							<th>Código</th>
 							<th>Nome da Filial</th>
 							<th>Ação</th>
 						</tr>
@@ -34,19 +35,17 @@
 						<tr th:each="f : ${filiais}">
 							<td th:text="${f.id}"></td>
 							<td th:text="${f.nome}"></td>
-							<td colspan="3"><a class="btn btn-primary btn-sm"
-								href="/cargos/editar/1" role="button"> <span
-									class="oi oi-arrow-circle-right" title="Ir" aria-hidden="true"></span>
-							</a> <a class="btn btn-info btn-sm"
-								th:href="@{/filiais/editor/{id} (id=${f.id})}" role="button">
+							<td colspan="3">
+								<a class="btn btn-primary btn-sm" th:href="@{/filiais/dashboad/{id} (id=${f.id})}" role="button"> 
+									<span class="oi oi-arrow-circle-right" title="Ir" aria-hidden="true"></span>
+								</a> 
+								<a class="btn btn-info btn-sm" th:href="@{/filiais/editor/{id} (id=${f.id})}" role="button">
 									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-							</a>
-								<button th:id="${ 'btn_filiais/excluir/' + f.id}" type="button"
-									class="btn btn-danger btn-sm" data-toggle="modal"
-									data-target="#myModal">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button></td>
+								</a>
+								<button th:id="${ 'btn_filiais/excluir/' + f.id}" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
+										<span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
+								</button>
+							</td>
 						</tr>
 
 					</tbody>
