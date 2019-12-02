@@ -10,57 +10,54 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.uze.model.Cliente;
-import com.example.uze.services.ClienteService;
+import com.example.uze.model.Filial;
+import com.example.uze.model.Pedido;
+import com.example.uze.services.PedidoService;
 
 @Controller
-@RequestMapping(value = "/clientes")
-public class ClienteController {
+@RequestMapping(value = "/pedidos")
+public class PedidoController {
 
 	@Autowired
-	private ClienteService clienteService;
-
+	private PedidoService pedidoService;
 
 	@GetMapping("/cadastrar")
-	private String cadastrar(Cliente cliente) {
-		return "/cliente/cadastro";
+	private String cadastrar(Filial filial) {
+		return "/pedido/cadastro";
 	}
 
 	@GetMapping("listar")
 	private String listar(ModelMap modelMap) {
-		modelMap.addAttribute("clientes", clienteService.listar());
-		return "/cliente/lista";
+		modelMap.addAttribute("pedidos", pedidoService.listar());
+		return "/pedido/lista";
 	}
 
 	@PostMapping("/salvar")
-	private String salvar(Cliente cliente, RedirectAttributes attr, BindingResult result) {
-		clienteService.salvar(cliente);
-		attr.addFlashAttribute("success", "Registro cadastrado com sucesso!");
-		return "redirect:/clientes/cadastrar";
+	private String salvar(Pedido pedido, RedirectAttributes attr, BindingResult result) {
+		pedidoService.salvar(pedido);
+		attr.addFlashAttribute("success", "filial cadastrada com sucesso!");
+		return "redirect:/filiais/cadastrar";
 	}
 	
 	@GetMapping("/editor/{id}")
 	private String abrirTelaEditar(@PathVariable("id") Integer id, ModelMap modelMap) {
-		modelMap.addAttribute("cliente", clienteService.buscarPorId(id));
-		return "/cliente/edicao";
+		modelMap.addAttribute("pedido", pedidoService.buscarPorId(id));
+		return "/filial/edicao";
 	}
 
 	@PostMapping("/editar")
-	private String editar(Cliente cliente, RedirectAttributes attr) {
-		clienteService.salvar(cliente);
+	private String editar(Pedido pedido, RedirectAttributes attr) {
+		pedidoService.salvar(pedido);
 		attr.addFlashAttribute("success", "Registro atualizado com sucesso!");
-		return "redirect:/clientes/listar";
+		return "redirect:/pedidos/listar";
 	}
 	
 	@GetMapping("/excluir/{id}")
 	private String excluir(@PathVariable("id") Integer id, RedirectAttributes attr) {
-		Cliente cliente = clienteService.buscarPorId(id);
-		clienteService.excluir(cliente);
+		Pedido pedido = pedidoService.buscarPorId(id);
+		pedidoService.excluir(pedido);
 		attr.addFlashAttribute("success", "Registro excluido com sucesso.");
-		return "redirect:/clientes/listar";
+		return "redirect:/filiais/listar";
 	}
 	
-	
-
-
 }

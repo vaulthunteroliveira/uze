@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+
+	<section class="layout-content" layout:fragment="corpo">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span>Cadastrar cliente</span></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="container" id="cadastro">
+			<form th:action="@{/clientes/salvar}" th:object="${cliente}"
+				method="POST">
+				<div th:replace="fragments/alert" />
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="nome">Nome do cliente</label> <input type="text"
+							class="form-control" id="nome"
+							placeholder="Informe o nome do cliente" autofocus="autofocus"
+							th:field="*{nome}" />
+					</div>
+					
+					<div class="form-group col-md-4">
+						<label for="nome">CNPJ</label> <input type="text"
+							class="form-control" id="cnpj"
+							placeholder="Informe o CNPJ" autofocus="autofocus"
+							th:field="*{cnpj}" />
+					</div>
+					
+				</div>
+				<input type="hidden" id="id" th:field="*{id}" />
+				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+			</form>
+		</div>
+		<script type="text/javascript">
+			let cadastrarCliente = document.getElementById('cadastrar-cliente')
+			cadastrarCliente.style.display = 'none'
+		</script>
+	</section>
+
+</body>
+
+</html>

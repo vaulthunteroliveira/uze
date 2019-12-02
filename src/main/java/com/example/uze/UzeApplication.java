@@ -1,28 +1,12 @@
 package com.example.uze;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-
-import com.example.uze.model.Cliente;
-import com.example.uze.model.Filial;
-import com.example.uze.model.Vendedor;
-import com.example.uze.services.ClienteService;
-import com.example.uze.services.VendedorService;
 
 @SpringBootApplication
 public class UzeApplication implements CommandLineRunner{
 	
-	@Autowired
-	private VendedorService vendedorService;
-	
-	private ClienteService clienteService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(UzeApplication.class, args);
