@@ -16,10 +16,60 @@
 			</div>
 		</nav>
 
+		
+
 		<div class="container" id="cadastro">
-			<form th:action="@{/clientes/salvar}" th:object="${cliente}"
+			<form th:action="@{/pedidos/salvar}" th:object="${pedido}"
 				method="POST">
 				<div th:replace="fragments/alert" />
+
+				<div class="form-row">
+					<div class="form-group col-md-4">
+						<label for="nome">CNPJ</label> <input type="text"
+							class="form-control" id="cnpj" placeholder="Informe o CNPJ"
+							autofocus="autofocus" th:field="*{cnpj}" />
+					</div>
+
+					<div class="form-group col-md-6">
+						<label for="nome">Nome do cliente</label> <input type="text"
+							class="form-control" id="nome"
+							placeholder="Informe o nome do cliente" autofocus="autofocus"
+							th:field="*{nome}" />
+					</div>
+
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="nome">Nome do vendedor</label> <input type="text"
+							class="form-control" id="nome"
+							placeholder="Informe o nome do vendedor" autofocus="autofocus"
+							th:field="*{nome}" />
+					</div>
+
+					<div class="form-group col-md-4">
+						<label for="departamento">Filiais</label> <select id="filial"
+							class="form-control" th:field="*{filial}">
+							<option value="">Selecione</option>
+							<option th:each="f : ${filiais}" th:value="${f.id}"
+								th:text="${f.nome}">Administração</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="exampleFormControlTextarea1">Produtos</label>
+						<textarea class="form-control" id="exampleFormControlTextarea1" th:field="*{valor}"
+							rows="3"></textarea>
+					</div>
+					<div class="form-group col-md-4">
+						<label for="nome">Valor</label> <input type="text"
+							class="form-control" id="cnpj" placeholder=""
+							autofocus="autofocus" th:field="*{valor}" />
+					</div>
+				</div>
+
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="nome">Nome do cliente</label> <input type="text"
@@ -27,14 +77,13 @@
 							placeholder="Informe o nome do cliente" autofocus="autofocus"
 							th:field="*{nome}" />
 					</div>
-					
+
 					<div class="form-group col-md-4">
 						<label for="nome">CNPJ</label> <input type="text"
-							class="form-control" id="cnpj"
-							placeholder="Informe o CNPJ" autofocus="autofocus"
-							th:field="*{cnpj}" />
+							class="form-control" id="cnpj" placeholder="Informe o CNPJ"
+							autofocus="autofocus" th:field="*{cnpj}" />
 					</div>
-					
+
 				</div>
 				<input type="hidden" id="id" th:field="*{id}" />
 				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>

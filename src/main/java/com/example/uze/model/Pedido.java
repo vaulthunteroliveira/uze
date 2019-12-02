@@ -29,6 +29,8 @@ public class Pedido implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data_comrpa", nullable = false)
 	private Date dataCompra;
+	
+	private String descricao;
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "vendedor_id", nullable = false)
@@ -80,6 +82,14 @@ public class Pedido implements Serializable{
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	@Override
