@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="~{layout}">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8" />
 </head>
 <body>
 
+	<section class="layout-content" layout:fragment="corpo">
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span>Cadastrar vendedores</span></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="container" id="cadastro">
+			<form th:action="@{/vendedores/editar}" th:object="${vendedor}"
+				method="POST">
+				<div th:replace="fragments/alert" />
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="nome">Nome do vendedor</label> <input type="text"
+							class="form-control" id="nome"
+							placeholder="Informe o nome do vendedor" autofocus="autofocus"
+							th:field="*{nome}" />
+					</div>
+
+					<div class="form-group col-md-4">
+						<label for="departamento">Filiais</label> <select id="filial"
+							class="form-control" th:field="*{filial}">
+							<option value="">Selecione</option>
+							<option th:each="f : ${filiais}" th:value="${f.id}"
+								th:text="${f.nome}">Administração</option>
+						</select>
+					</div>
+				</div>
+
+				<input type="hidden" id="id" th:field="*{id}" />
+				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+			</form>
+		</div>
+		<script type="text/javascript">
+			/* let cadastrarFilial = document.getElementById('cadastrar-filial')
+			cadastrarFilial.style.display = 'none' */
+		</script>
+	</section>
+
 </body>
+
 </html>

@@ -43,7 +43,7 @@ public class VendedorController {
 	private String salvar(Vendedor vendedor, RedirectAttributes attr, BindingResult result) {
 		vendedorService.salvar(vendedor);
 		attr.addFlashAttribute("success", "Registro cadastrado com sucesso!");
-		return "redirect:/vendedor/cadastrar";
+		return "redirect:/vendedores/cadastrar";
 	}
 	
 	@GetMapping("/editor/{id}")
@@ -64,7 +64,7 @@ public class VendedorController {
 		Vendedor vendedor = vendedorService.buscarPorId(id);
 		vendedorService.excluir(vendedor);
 		attr.addFlashAttribute("success", "Registro excluido com sucesso.");
-		return "redirect:/vemdedores/listar";
+		return "redirect:/vendedores/listar";
 	}
 	
 	@ModelAttribute("filiais")

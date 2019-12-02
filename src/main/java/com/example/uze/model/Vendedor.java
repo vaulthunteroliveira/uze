@@ -21,7 +21,7 @@ public class Vendedor implements Serializable {
 
 	private String nome;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne
 	@JoinColumn(name = "filial_id")
 	private Filial filial;
 
