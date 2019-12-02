@@ -1,10 +1,12 @@
 package com.example.uze.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.uze.exception.ObjectNotFoundException;
 import com.example.uze.model.Cliente;
 import com.example.uze.repositories.ClienteRepository;
 
@@ -14,21 +16,26 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repo;
 	
-	private void salvar(Cliente cliente) {
+	public void salvar(Cliente cliente) {
 		repo.save(cliente);
 	}
 	
-	private void excluir(Cliente cliente) {
+	public void excluir(Cliente cliente) {
 		repo.delete(cliente);
 	}
 	
-	private List<Cliente> listar() {
+	public List<Cliente> listar() {
 		return repo.findAll();
 
 	}
 	
-	private void atualizar(Cliente cliente) {
+	public void atualizar(Cliente cliente) {
 		repo.save(cliente);
+	}
+	
+	public Cliente buscarPorId(Integer id) {
+		Optional<Cliente> obj = repo.findById(id);
+		return obj.orElseThrow(()-> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
 	}
 	
 }

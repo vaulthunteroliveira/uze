@@ -2,6 +2,7 @@ package com.example.uze.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,7 @@ public class Cliente implements Serializable{
 	
 	private String nome;
 	
-	
+	@Column(unique = true)
 	private String cnpj;
 
 	public Cliente() {

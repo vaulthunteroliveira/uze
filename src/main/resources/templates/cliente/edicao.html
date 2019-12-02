@@ -17,7 +17,7 @@
 		</nav>
 
 		<div class="container" id="cadastro">
-			<form th:action="@{/clientes/salvar}" th:object="${cliente}"
+			<form th:action="@{/clientes/editar}" th:object="${cliente}"
 				method="POST">
 				<div th:replace="fragments/alert" />
 				<div class="form-row">
@@ -41,8 +41,7 @@
 			</form>
 		</div>
 		<script type="text/javascript">
-			let cadastrarCliente = document.getElementById('cadastrar-cliente')
-			cadastrarCliente.style.display = 'none'
+
 		</script>
 	</section>
 
