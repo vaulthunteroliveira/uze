@@ -19,7 +19,7 @@ import com.example.uze.services.FilialService;
 public class FilialController {
 
 	@Autowired
-	private FilialService service;
+	private FilialService filialService;
 
 	@GetMapping("/cadastrar")
 	private String cadastrar(Filial filial) {
@@ -28,34 +28,34 @@ public class FilialController {
 
 	@GetMapping("listar")
 	private String listar(ModelMap modelMap) {
-		modelMap.addAttribute("filiais", service.listar());
+		modelMap.addAttribute("filiais", filialService.listar());
 		return "/filial/lista";
 	}
 
 	@PostMapping("/salvar")
 	private String salvar(Filial filial, RedirectAttributes attr, BindingResult result) {
-		service.salvar(filial);
+		filialService.salvar(filial);
 		attr.addFlashAttribute("success", "filial cadastrada com sucesso!");
 		return "redirect:/filiais/cadastrar";
 	}
 	
 	@GetMapping("/editor/{id}")
 	private String abrirTelaEditar(@PathVariable("id") Integer id, ModelMap modelMap) {
-		modelMap.addAttribute("filial", service.buscarPorId(id));
+		modelMap.addAttribute("filial", filialService.buscarPorId(id));
 		return "/filial/edicao";
 	}
 
 	@PostMapping("/editar")
 	private String editar(Filial filial, RedirectAttributes attr) {
-		service.salvar(filial);
+		filialService.salvar(filial);
 		attr.addFlashAttribute("success", "Registro atualizado com sucesso!");
 		return "redirect:/filiais/listar";
 	}
 	
 	@GetMapping("/excluir/{id}")
 	private String excluir(@PathVariable("id") Integer id, RedirectAttributes attr) {
-		Filial filial = service.buscarPorId(id);
-		service.excluir(filial);
+		Filial filial = filialService.buscarPorId(id);
+		filialService.excluir(filial);
 		attr.addFlashAttribute("success", "Registro excluido com sucesso.");
 		return "redirect:/filiais/listar";
 	}
